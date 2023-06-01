@@ -1,0 +1,180 @@
+
+<!doctype html>
+<html lang="es">
+
+
+  <body style="background-color: rgb(31, 31, 31);">
+
+    <main role="main">
+
+        <div class="container text-center mt-5">
+
+          <!-- Contenido -->
+
+          <div class="row">
+
+            <div class="col-md-12">
+
+                
+                <div class="header">
+                   <div class="container">
+                      <div class="row">
+                         <div class="col-md-5">
+                            <!-- Logo -->
+                            <div class="logo">
+                            </div>
+                         </div>
+                         <div class="col-md-5">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="input-group form">
+                                     <!--
+                                     <input type="text" class="form-control" placeholder="Buscar...">
+                                     <span class="input-group-btn">
+                                       <button class="btn btn-primary" type="button">Buscar</button>
+                                     </span>
+                                     -->
+                                </div>
+                              </div>
+                            </div>
+                         </div>
+                         <div class="col-md-2">
+                            <div class="navbar navbar-inverse" role="banner">
+                                <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                                </nav>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="https://nubecolectiva.com/blog/tutos/demos/laravel56/public/admin/dashboard">Home</a></li>
+                  <li class="breadcrumb-item"><a href="/postres/index">cosas</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Crear</li>
+                </ol>
+              </nav>
+              
+              <div class="row">
+
+                <div class="col-md-12" align="left">
+                        <div class="content-box-large">
+                          <div class="panel-heading">
+                          <div class="panel-title"><h2  style="color: rgb(255,255,255)">Crear</h2></div>              
+                          
+                        </div>
+                          <div class="panel-body">
+
+                            
+
+                            
+
+                          
+                                                <div class="card-block">
+                                                    <section class="example">
+
+                                                      <form method="POST" action="/postres/insertar" accept-charset="UTF-8" role="form" id="crearpostre" name="crearpostre" enctype="multipart/form-data">
+
+                                                        <!-- Protección CSRF -->
+                                                        <%= token_tag nil %>
+
+                                                        <div class="row">
+                                                          <div class="col-md-12">
+                                                                <section class="panel">                        
+                                                                    <div class="panel-body">
+
+                                                                        <div class="form-group">
+                                                                          <label  style="color: rgb(255,255,255)" for="nombre" class="negrita">Nombre:</label>                          
+                                                                          <div>
+                                                                            <input class="form-control" name="nombre" type="text" id="nombre" onload="crearUrlAmigable(this.value);" onkeypress="crearUrlAmigable(this.value);" required>                              
+                                                                          </div>
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                          <label  style="color: rgb(255,255,255)" for="precio" class="negrita">Precio:</label>                          
+                                                                          <div>
+                                                                            <input class="form-control" name="precio" type="text" id="precio" required>                              
+                                                                          </div>
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                          <label  style="color: rgb(255,255,255)" for="stock" class="negrita">Stock:</label>                          
+                                                                          <div>
+                                                                            <input class="form-control" name="stock" type="text" id="stock" required>                              
+                                                                          </div>
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                          <label  style="color: rgb(255,255,255)" for="img" class="negrita">Selecciona una imagen:</label>                          
+                                                                          <div>
+                                                                          <input class="form-control" type="file" name="img" id="img" required>
+                                                                          
+                                                                          </div>
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                          <label  style="color: rgb(255,255,255)" for="url" class="negrita">URL:</label>                          
+                                                                          <div>
+                                                                            <input type="text" class="form-control" name="url" id="url" readonly>
+                                                                          </div>
+                                                                        </div>
+
+                                                                        <button type="submit" class="btn btn-info">Save</button>
+                                                                        <%= link_to 'Cancel', url_for(:back), class: "btn btn-warning" %>
+
+                                                                        <br><br>
+                                                                      
+                                                                    </div>
+                                                                </section>
+                                                          </div>
+                                                        </div>                                                      
+                                                      </form>
+                                                        
+                                                    </section>
+                                                </div>
+                                            
+
+
+                          </div>
+                        </div>
+                </div>
+
+              </div>
+
+            </div>
+
+      </div>
+      </div>              
+
+            </div>
+
+          </div> 
+
+          <!-- Fin Contenido -->     
+
+
+
+                <script type="text/javascript">
+
+                  function crearUrlAmigable(str) {
+                    
+                    // Reemplaza los carácteres especiales | simbolos con un espacio 
+                    str = str.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+                    
+                    // Corta los espacios al inicio y al final del string
+                    str = str.replace(/^\s+|\s+$/gm,'');
+                    
+                    // Reemplaza el espacio con guión 
+                    str = str.replace(/\s+/g, '-');
+
+                    var input = document.getElementById('url');
+                    input.value = str;
+
+                  }
+                  
+                </script>
+    
+      
+  </body>
+</html>

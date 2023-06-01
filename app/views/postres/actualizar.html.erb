@@ -1,0 +1,197 @@
+
+<!doctype html>
+<html lang="es">
+
+  <body style="background-color: rgb(31, 31, 31);">
+
+    <main role="main">
+
+        <div class="container text-center mt-5">
+
+          <!-- Contenido -->
+
+          <div class="row">
+
+            <div class="col-md-12">
+                
+                <div class="header">
+                   <div class="container">
+                      <div class="row">
+
+                         </div>
+                         <div class="col-md-5">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="input-group form">
+                                     <!--
+                                     <input type="text" class="form-control" placeholder="Buscar...">
+                                     <span class="input-group-btn">
+                                       <button class="btn btn-primary" type="button">Buscar</button>
+                                     </span>
+                                     -->
+                                </div>
+                              </div>
+                            </div>
+                         </div>
+                         <div class="col-md-2">
+                            <div class="navbar navbar-inverse" role="banner">
+                                <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                                  <ul class="nav navbar-nav">
+                                  </ul>
+                                </nav>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+                <div class="page-content">
+        <div class="row">
+        
+            <div class="col-md-10">
+
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/postres/index">Home</a></li>
+                  <li class="breadcrumb-item"><a href="/postres/index">cosas</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Update</li>
+                </ol>
+              </nav>
+              
+              <div class="row">
+
+                <div class="col-md-12" align="left">
+                        <div class="content-box-large">
+                          <div class="panel-heading">
+                          <div class="panel-title"><h2 style="color: rgb(255,255,255)">Update</h2></div>              
+                          
+                        </div>
+                          <div class="panel-body">
+
+                            
+
+                            
+
+                          
+                                                <div class="card-block">
+                                                    <section class="example">
+
+                                                    	<% @postres.each do |postres| %>
+
+                                                      <form method="POST" action="/postres/editar/<%= postres.id %>" accept-charset="UTF-8" role="form" id="actualizarpostre" name="actualizarpostre" enctype="multipart/form-data">
+
+                                                        <!-- Protección CSRF -->
+                                                        <%= token_tag nil %>
+
+                                                        <div class="row">
+    <div class="col-md-12">
+        <section class="panel">                        
+            <div class="panel-body">
+
+                <div class="form-group">
+                  <label style="color: rgb(255,255,255)" for="nombre" class="negrita">Name:</label>                          
+                  <div>
+                    <input class="form-control" placeholder="Torta de Chocolate" name="nombre" type="text" id="nombre" onload="crearUrlAmigable(this.value);" onkeypress="crearUrlAmigable(this.value);" value="<%= postres.nombre %>" required>                              
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label style="color: rgb(255,255,255)" for="precio" class="negrita">Price:</label>                          
+                  <div>
+                    <input class="form-control" placeholder="4.50" name="precio" type="text" id="precio" value="<%= postres.precio %>" required>                              
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label style="color: rgb(255,255,255)" for="stock" class="negrita">Stock:</label>                          
+                  <div>
+                    <input class="form-control" placeholder="40" name="stock" type="text" id="stock" value="<%= postres.stock %>" required>                              
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label style="color: rgb(255,255,255)" for="img" class="negrita">Select image:</label>                          
+                  <div>
+                  <input class="form-control" type="file" name="img" id="img" onchange="ona()">
+                  <br><br> 
+                  
+                    <h3 style="color: rgb(255,255,255)">Current Image:</h3>
+                    <br><br>
+                    <img src="/assets/img/<%= postres.img %>" class="img-fluid" title="<%= postres.nombre %>" alt="<%= postres.nombre %>">
+                  
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="url" class="negrita">URL:</label>                          
+                  <div>
+                    <input type="text" class="form-control" name="url" id="url" value="<%= postres.url %>" readonly>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-info">Save</button>
+                <%= link_to 'Cancel', url_for(:back), class: "btn btn-warning" %>
+
+                <br><br>
+              
+            </div>
+        </section>
+    </div>
+</div>                                                      
+                                                      </form>
+
+                                                      <% end %> 
+                                                        
+                                                    </section>
+                                                </div>
+                                            
+
+
+                          </div>
+                        </div>
+                </div>
+
+              </div>
+
+            </div>
+
+      </div>
+      </div>              
+
+            </div>
+
+          </div> 
+
+          <!-- Fin Contenido -->     
+
+          <hr>
+
+
+    </main>
+
+
+
+
+                <script type="text/javascript">
+
+                  function crearUrlAmigable(str) {
+                    
+                    //replace all special characters | symbols with a space
+                    str = str.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+                    
+                    // trim spaces at start and end of string
+                    str = str.replace(/^\s+|\s+$/gm,'');
+                    
+                    // replace space with dash/hyphen
+                    str = str.replace(/\s+/g, '-');
+
+                    var input = document.getElementById('url');
+                    input.value = str;
+
+                  }
+                  
+                </script>
+    
+      
+  </body>
+</html>
